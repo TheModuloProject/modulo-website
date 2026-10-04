@@ -1,0 +1,182 @@
+[
+  {
+    "name": "desktop",
+    "path": "/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/work/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/services/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/about/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/contact/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/privacy/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/terms/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/work/fieldnotes/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/work/common-ground/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "desktop",
+    "path": "/work/interval/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/work/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/services/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/about/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/contact/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/privacy/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/terms/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/work/fieldnotes/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/work/common-ground/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "tablet",
+    "path": "/work/interval/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/work/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/services/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/about/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/contact/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/privacy/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/terms/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/work/fieldnotes/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/work/common-ground/",
+    "cls": 0,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "path": "/work/interval/",
+    "cls": 0,
+    "overflow": false
+  }
+]

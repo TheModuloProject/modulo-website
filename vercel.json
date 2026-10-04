@@ -1,0 +1,41 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-QVqJ5UWstNSTwFE+M1Gsv0fL8K34VdC5J+97E2hJVag=' 'sha256-CrKfgW321CabDGuvfXqFgps0F8iAEYXptki8Zd4y4qQ=' 'sha256-FF15FqZ0a+mYmp5bIeXNPl5XSlqojQWA4AuW8kY65xo=' 'sha256-+Ow+0dFhyijNWY3+Pa1jkZHby4SM0nhxl78pHI5KhLI=' 'sha256-ZR+bCmoLlgDpFlDpSFL1cvapz8FZJEGV9WlG0fve7BQ=' 'sha256-WCbdZqErDl7zn81cMDFpsnYMEmbIY8XsWmzBttn6wUM=' 'sha256-CYx+eUAe7M+cxAMmi0R8Q/5ZVGrkHWuky9tMiwPnr+k=' 'sha256-Qf1jfGszGEAJQ4L87vDQmPCnI3gU+U/y4pn+NQJ9TzE=' 'sha256-iPwOqqhcSYLrxk1UfOL0ZJzOKxIwMMxSuOnwBBBLhqI=' 'sha256-562v5BCn+JohbS/zFfyJffsKpEC0H/nUCcVLqrytHmE=' 'sha256-KZ1zw4ME/t7BZMdGm1RlzjyS3IUllO1v/p+ZNf0TgbU=' 'sha256-+hjwuj2ewwkopsZLPOlRsVjU9CmFtSXV4aledIlsJb0='; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000"
+        }
+      ]
+    }
+  ]
+}

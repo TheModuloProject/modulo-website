@@ -1,0 +1,207 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 960,
+    "cls": 0,
+    "overflow": false,
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/assets/fonts/archivo-latin-variable.woff2",
+        "bytes": 35240
+      },
+      {
+        "url": "http://127.0.0.1:3000/styles.css",
+        "bytes": 3838
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/theme.js",
+        "bytes": 1495
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/motion/reveal.js",
+        "bytes": 567
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/menu.js",
+        "bytes": 1036
+      },
+      {
+        "url": "http://127.0.0.1:3000/script.js",
+        "bytes": 407
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/material.svg",
+        "bytes": 904
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/favicon.svg",
+        "bytes": 473
+      }
+    ]
+  },
+  {
+    "name": "tablet",
+    "width": 834,
+    "height": 1194,
+    "cls": 0,
+    "overflow": false,
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/assets/fonts/archivo-latin-variable.woff2",
+        "bytes": 35240
+      },
+      {
+        "url": "http://127.0.0.1:3000/styles.css",
+        "bytes": 3838
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/theme.js",
+        "bytes": 1495
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/menu.js",
+        "bytes": 1036
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/motion/reveal.js",
+        "bytes": 567
+      },
+      {
+        "url": "http://127.0.0.1:3000/script.js",
+        "bytes": 407
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/material.svg",
+        "bytes": 904
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/favicon.svg",
+        "bytes": 473
+      }
+    ]
+  },
+  {
+    "name": "mobile",
+    "width": 390,
+    "height": 844,
+    "cls": 0,
+    "overflow": false,
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/assets/fonts/archivo-latin-variable.woff2",
+        "bytes": 35240
+      },
+      {
+        "url": "http://127.0.0.1:3000/styles.css",
+        "bytes": 3838
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/theme.js",
+        "bytes": 1495
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/menu.js",
+        "bytes": 1036
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/motion/reveal.js",
+        "bytes": 567
+      },
+      {
+        "url": "http://127.0.0.1:3000/script.js",
+        "bytes": 407
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/material.svg",
+        "bytes": 904
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/favicon.svg",
+        "bytes": 473
+      }
+    ]
+  },
+  {
+    "name": "compact",
+    "width": 320,
+    "height": 700,
+    "cls": 0,
+    "overflow": false,
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/assets/fonts/archivo-latin-variable.woff2",
+        "bytes": 35240
+      },
+      {
+        "url": "http://127.0.0.1:3000/styles.css",
+        "bytes": 3838
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/theme.js",
+        "bytes": 1495
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/motion/reveal.js",
+        "bytes": 567
+      },
+      {
+        "url": "http://127.0.0.1:3000/script.js",
+        "bytes": 407
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/menu.js",
+        "bytes": 1036
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/material.svg",
+        "bytes": 904
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/favicon.svg",
+        "bytes": 473
+      }
+    ]
+  },
+  {
+    "name": "wide-mobile",
+    "width": 600,
+    "height": 900,
+    "cls": 0,
+    "overflow": false,
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/assets/fonts/archivo-latin-variable.woff2",
+        "bytes": 35240
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/theme.js",
+        "bytes": 1495
+      },
+      {
+        "url": "http://127.0.0.1:3000/styles.css",
+        "bytes": 3827
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/navigation/menu.js",
+        "bytes": 1036
+      },
+      {
+        "url": "http://127.0.0.1:3000/components/motion/reveal.js",
+        "bytes": 567
+      },
+      {
+        "url": "http://127.0.0.1:3000/script.js",
+        "bytes": 407
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/material.svg",
+        "bytes": 904
+      },
+      {
+        "url": "http://127.0.0.1:3000/assets/favicon.svg",
+        "bytes": 473
+      }
+    ]
+  }
+]

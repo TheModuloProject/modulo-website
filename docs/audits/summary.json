@@ -1,0 +1,391 @@
+[
+  {
+    "path": "/",
+    "slug": "home",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.4 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "20 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "1.1 s"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  },
+  {
+    "path": "/work/",
+    "slug": "work",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.5 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "1.2 s"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  },
+  {
+    "path": "/services/",
+    "slug": "services",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.5 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 60 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  },
+  {
+    "path": "/about/",
+    "slug": "about",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.6 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "1.2 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "value": "1.6 s"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 60 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "value": "Est savings of 300 ms"
+      }
+    ]
+  },
+  {
+    "path": "/contact/",
+    "slug": "contact",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.5 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "1.1 s"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  },
+  {
+    "path": "/privacy/",
+    "slug": "privacy",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.6 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "1.2 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "value": "1.6 s"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 60 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "value": "Est savings of 300 ms"
+      }
+    ]
+  },
+  {
+    "path": "/terms/",
+    "slug": "terms",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.5 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 60 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  },
+  {
+    "path": "/work/fieldnotes/",
+    "slug": "work-fieldnotes",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.5 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "1.1 s"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 60 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  },
+  {
+    "path": "/work/common-ground/",
+    "slug": "work-common-ground",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.5 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "1.1 s"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 60 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  },
+  {
+    "path": "/work/interval/",
+    "slug": "work-interval",
+    "categories": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "largest-contentful-paint": "1.5 s",
+      "cumulative-layout-shift": "0",
+      "total-blocking-time": "0 ms"
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "1.1 s"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 60 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  }
+]
