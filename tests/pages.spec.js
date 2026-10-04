@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-const routes=['/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/common-ground/','/work/interval/'];
+const routes=['/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/invoiceit/','/work/interval/'];
 const settle = page => expect(page.locator('html')).not.toHaveClass(/motion-ready|theme-changing/);
 
 test('every page has working assets, a single title and a responsive layout',async({page})=>{
@@ -99,10 +99,6 @@ test('concept previews respond to taps without changing real data',async({page})
  await page.goto('/work/fieldnotes/');
  await page.getByRole('button',{name:'Change perspective'}).click();
  await expect(page.locator('[data-example]')).toHaveClass(/is-alternate/);
- await page.goto('/work/common-ground/');
- await page.getByRole('button',{name:'Workshop',exact:true}).click();
- await expect(page.locator('[data-room-output]')).toHaveText('The workshop · 8 people');
- await expect(page.getByRole('button',{name:'Reading room',exact:true})).toHaveAttribute('aria-pressed','false');
  await page.goto('/work/interval/');
  await page.getByRole('button',{name:'Today',exact:true}).click();
  await expect(page.locator('[data-filter-output]')).toHaveText('2 tasks in view');
@@ -117,15 +113,46 @@ test('internal links resolve, placeholder stories stay out of search, and legal 
  for(const route of ['/',...routes]){
   await page.goto(route);
   for(const href of await page.locator('a[href^="/"]').evaluateAll(items=>items.map(item=>item.getAttribute('href'))))links.add(href.split('#')[0]);
-  if(route.startsWith('/work/')&&route!=='/work/')await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex, follow');
+  if(route.startsWith('/work/')&&route!=='/work/'&&route!=='/work/invoiceit/')await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex, follow');
  }
  for(const path of links)expect((await request.get(path)).status(),path).toBe(200);
  const sitemap=await (await request.get('/sitemap.xml')).text();
  expect(sitemap).toContain('https://themoduloproject.com/privacy/');
+ expect(sitemap).toContain('https://themoduloproject.com/work/invoiceit/');
  expect(sitemap).not.toContain('/work/fieldnotes/');
+ expect(sitemap).not.toContain('/work/interval/');
  await page.goto('/');
  await page.getByRole('link',{name:'View our work'}).click();
  await expect(page).toHaveURL(/\/work\/$/);
+});
+
+test('Fieldnotes leads the portfolio and Invoiceit replaces Common Ground with the supplied image',async({page,request})=>{
+ for(const route of ['/','/work/']){
+  await page.goto(route);
+  await expect(page.locator('.work-item-1').getByRole('heading',{name:'Fieldnotes',exact:true})).toHaveCount(1);
+  await expect(page.locator('.work-item-1 .project-link')).toHaveAttribute('href','/work/fieldnotes/');
+  const project=page.locator('.work-item-2');
+  await expect(project.getByRole('heading',{name:'Invoiceit',exact:true})).toHaveCount(1);
+  await expect(project.locator('.project-link')).toHaveAttribute('href','/work/invoiceit/');
+  await expect(project.locator('.project-view')).toHaveText('View project');
+  await expect(project.locator('img')).toHaveAttribute('src','/assets/invoiceit-cover.webp');
+  await expect(page.locator('.work-grid')).not.toContainText('Common Ground');
+ }
+ const response=await page.goto('/work/invoiceit/');
+ expect(response.status()).toBe(200);
+ await expect(page.locator('.case-lede')).toContainText('create, manage, update, and generate professional invoices across multiple business licenses');
+ await expect(page.locator('.placeholder-note')).toHaveCount(0);
+ await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','index, follow, max-image-preview:large');
+ const link=page.getByRole('link',{name:'Open Invoiceit',exact:true});
+ await expect(link).toHaveAttribute('href','https://qaydsoftware.netlify.app/auth/login');
+ await expect(link).toHaveAttribute('rel','noopener noreferrer');
+ await expect(page.locator('.case-preview img')).toHaveAttribute('src','/assets/invoiceit-cover.webp');
+ for(const image of await page.locator('img[src*="invoiceit-login"]').all()){
+  await image.scrollIntoViewIfNeeded();
+  await expect.poll(()=>image.evaluate(element=>element.complete&&element.naturalWidth>0)).toBe(true);
+ }
+ expect((await request.get('/work/fieldnotes/')).status()).toBe(200);
+ expect((await request.get('/work/common-ground/')).status()).toBe(404);
 });
 
 test('without JavaScript, content and contact fallback remain available without submitting form data',async({browser},testInfo)=>{

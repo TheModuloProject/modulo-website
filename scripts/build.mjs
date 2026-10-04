@@ -13,7 +13,7 @@ for(const file of [...files,'styles.css','pages.css','script.js','robots.txt','s
  await mkdir(dirname(resolve(destination,file)),{recursive:true});
  await copyFile(resolve(root,file),resolve(destination,file));
 }
-for(const file of ['favicon.svg','logo-light.svg','logo-dark.svg','material.svg','social-preview.png','abu-dhabi-stamp-160.webp','abu-dhabi-stamp-280.webp','abu-dhabi-stamp-160.avif','abu-dhabi-stamp-280.avif']) await copyFile(resolve(root,'assets',file),resolve(destination,'assets',file));
+for(const file of ['favicon.svg','logo-light.svg','logo-dark.svg','material.svg','social-preview.png','abu-dhabi-stamp-160.webp','abu-dhabi-stamp-280.webp','abu-dhabi-stamp-160.avif','abu-dhabi-stamp-280.avif','invoiceit-login-desktop.webp','invoiceit-login-mobile.webp','invoiceit-cover.webp']) await copyFile(resolve(root,'assets',file),resolve(destination,'assets',file));
 await cp(resolve(root,'assets/fonts'),resolve(destination,'assets/fonts'),{recursive:true});
 await cp(resolve(root,'components'),resolve(destination,'components'),{recursive:true});
 const policies=await Promise.all(files.map(file=>securityHeaders(resolve(root,file))));

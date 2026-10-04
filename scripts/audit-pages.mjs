@@ -6,7 +6,7 @@ await mkdir('docs/audits',{recursive:true});
 const chrome=await launch({chromePath:process.env.MODULO_BROWSER_PATH || chromium.executablePath(),chromeFlags:['--headless','--disable-background-networking']});
 const summaries=[];
 try{
- for(const path of (process.argv.slice(2).length ? process.argv.slice(2) : ['/','/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/common-ground/','/work/interval/'])){
+ for(const path of (process.argv.slice(2).length ? process.argv.slice(2) : ['/','/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/invoiceit/','/work/interval/'])){
   const result=await lighthouse(`http://127.0.0.1:3000${path}`,{port:chrome.port,output:'json',onlyCategories:['performance','accessibility','best-practices','seo'],logLevel:'error'});
   const slug=path==='/'?'home':path.split('/').filter(Boolean).join('-');
   await writeFile(`docs/audits/${slug}-mobile.json`,result.report);

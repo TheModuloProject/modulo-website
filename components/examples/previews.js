@@ -5,13 +5,6 @@ export function initExamples() {
     event.currentTarget.textContent=alternate?'Restore perspective':'Change perspective';
     event.currentTarget.setAttribute('aria-pressed',String(alternate));
   });
-  document.querySelectorAll('[data-room]').forEach(button=>button.addEventListener('click',()=>{
-    const preview=button.closest('.project-art');
-    preview.querySelectorAll('[data-room]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-    const workshop=button.dataset.room==='The workshop';
-    preview.classList.toggle('is-workshop',workshop);
-    preview.querySelector('[data-room-output]').textContent=`${button.dataset.room} · ${workshop?'8':'4'} people`;
-  }));
   document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
     const preview=button.closest('.project-art');
     preview.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
