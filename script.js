@@ -7,6 +7,8 @@ initMenu();
 initReveals();
 initScrollReveals();
 initHeadingTyping();
+if(document.querySelector('[data-living-gradient]')) import('./components/motion/gradient.js').then(({initLivingGradients})=>initLivingGradients());
+if(document.querySelector('[data-starburst-invitation]')) import('./components/motion/invitation.js').then(({initStarburstInvitations})=>initStarburstInvitations());
 const system=document.querySelector('[data-modulo]');
 if(system){
   const observer=new IntersectionObserver(async entries=>{

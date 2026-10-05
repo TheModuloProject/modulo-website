@@ -16,11 +16,12 @@ Open http://127.0.0.1:3000. The server exposes public pages and assets only, inc
 
 - `scripts/generate-site.mjs`: page content, services, About, contact and legal copy.
 - `scripts/site/shared.mjs`: shared header, mobile menu, logo, footer and metadata.
-- `scripts/site/work.mjs`: the Invoiceit project, two studio concepts and their preview stories.
+- `scripts/site/work.mjs`: three live projects, two studio concepts and their preview stories.
+- `scripts/site/invitation.mjs`: SVG starburst, marker lettering and contact pills for Work, Services and About. Behavior lives in `components/motion/invitation.js`.
 - `scripts/site/hero.html`: the approved homepage hero composition.
 - `styles.css`: original design tokens, typography, hero, navigation and theme transitions.
 - `pages.css`: editorial layouts, project previews, services, About, form, legal pages and mobile variants.
-- `components/`: small reusable modules for navigation, finite motion, modulo, contact and concept interactions.
+- `components/`: small reusable modules for navigation, motion, modulo, contact and concept interactions. `components/motion/gradient.js` renders theme-aware WebGL backgrounds on the homepage and the Services, About and Contact sections, with off-screen pausing, reduced-motion support and a CSS fallback.
 
 Run `npm run generate` after changing templates. `npm run build` also generates all pages automatically. Generated HTML remains readable without JavaScript; interaction controls require it.
 
@@ -36,7 +37,7 @@ npm run build
 
 Run these with the local server active. `npm run verify` runs these checks in sequence and refreshes the QA report. New page screenshots live in `docs/previews/pages/`.
 
-Deploy `dist/` as a static site. The build outputs all 11 pages, self-hosted fonts, the supplied Abu Dhabi stamp (responsive AVIF/WebP), supplied logo geometry (SVG), and a social preview. It generates CSP script hashes and Netlify/Cloudflare-style `_headers`, plus a root Vercel configuration. Configure equivalent headers on other hosts. Source files, tests and development tooling are excluded from `dist/`.
+Deploy `dist/` as a static site. The build outputs all 13 pages, self-hosted fonts, the supplied Abu Dhabi stamp (responsive AVIF/WebP), supplied logo geometry (SVG), and a social preview. It generates CSP script hashes and Netlify/Cloudflare-style `_headers`, plus a root Vercel configuration. Configure equivalent headers on other hosts. Source files, tests and development tooling are excluded from `dist/`.
 
 ## Site behavior
 
@@ -46,6 +47,6 @@ About's modulo sequence loads when needed, uses a finite animation, stops when h
 
 The project form validates input and prepares an email draft. The visitor reviews the draft and uses “Open email draft” to open their email app, or copies the text. It sends no request to a backend and saves no form data. The address is `hello@themoduloproject.com`, retained from the original website.
 
-Work presents Invoiceit, a live invoicing and business management application, with a user-supplied cover image, public login screenshots and an external link. Its project page is indexable and included in the sitemap. Fieldnotes and Interval remain clearly labeled studio concepts with illustrative previews; their story pages are `noindex` and excluded from the sitemap. No client results or performance metrics are claimed.
+Work presents Hadaya Al Dar and DataFlow Medical with desktop/mobile website screenshots and live links, alongside Invoiceit, a live invoicing and business management application, with a user-supplied cover image, public login screenshots and an external link. All three live project pages are indexable and included in the sitemap. Fieldnotes and Interval remain clearly labeled studio concepts with illustrative previews; their story pages are `noindex` and excluded from the sitemap. No client results or performance metrics are claimed.
 
 Privacy and Terms describe this actual site behavior under the studio name TheModuloProject. Hosting-specific information can be refined when a production host is chosen. See [launch notes](docs/LAUNCH.md) and [verification](docs/QA.md).

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-const routes=['/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/invoiceit/','/work/interval/'];
+const routes=['/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/invoiceit/','/work/interval/','/work/hadaya-al-dar/','/work/dataflow-medical/'];
 const settle = page => expect(page.locator('html')).not.toHaveClass(/motion-ready|theme-changing/);
 
 test('every page has working assets, a single title and a responsive layout',async({page})=>{
@@ -113,12 +113,14 @@ test('internal links resolve, placeholder stories stay out of search, and legal 
  for(const route of ['/',...routes]){
   await page.goto(route);
   for(const href of await page.locator('a[href^="/"]').evaluateAll(items=>items.map(item=>item.getAttribute('href'))))links.add(href.split('#')[0]);
-  if(route.startsWith('/work/')&&route!=='/work/'&&route!=='/work/invoiceit/')await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex, follow');
+  if(['/work/fieldnotes/','/work/interval/'].includes(route))await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex, follow');
  }
  for(const path of links)expect((await request.get(path)).status(),path).toBe(200);
  const sitemap=await (await request.get('/sitemap.xml')).text();
  expect(sitemap).toContain('https://themoduloproject.com/privacy/');
  expect(sitemap).toContain('https://themoduloproject.com/work/invoiceit/');
+ expect(sitemap).toContain('https://themoduloproject.com/work/hadaya-al-dar/');
+ expect(sitemap).toContain('https://themoduloproject.com/work/dataflow-medical/');
  expect(sitemap).not.toContain('/work/fieldnotes/');
  expect(sitemap).not.toContain('/work/interval/');
  await page.goto('/');
@@ -167,4 +169,40 @@ test('without JavaScript, content and contact fallback remain available without 
  await expect(page.locator('[data-input-value]')).toHaveText('17');
  await expect(page.locator('[data-remainder-value]')).toHaveText('2');
  await context.close();
+});
+
+test('live website projects appear in the portfolio with loaded previews and dedicated pages',async({page})=>{
+ const websites=[
+  {slug:'hadaya-al-dar',name:'Hadaya Al Dar',url:'https://hadaya-al-dar.netlify.app'},
+  {slug:'dataflow-medical',name:'DataFlow Medical',url:'https://dataflow-medical.netlify.app'}
+ ];
+ for(const route of ['/','/work/']){
+  await page.goto(route);
+  await expect(page.locator('.work-item')).toHaveCount(5);
+  for(const site of websites){
+   const link=page.locator(`.project-link[href="/work/${site.slug}/"]`);
+   await expect(link.getByRole('heading',{name:site.name,exact:true})).toHaveCount(1);
+   await link.scrollIntoViewIfNeeded();
+   await expect.poll(()=>link.locator('img').evaluate(img=>img.complete&&img.naturalWidth===1440)).toBe(true);
+   await expect(link.locator('.project-view')).toHaveText('View project');
+  }
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ }
+ for(const site of websites){
+  const response=await page.goto(`/work/${site.slug}/`);
+  expect(response.status()).toBe(200);
+  await expect(page.locator('h1')).toHaveText(`${site.name}.`);
+  await expect(page).toHaveTitle(new RegExp(`${site.name} \\| Website`));
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','index, follow, max-image-preview:large');
+  const liveLink=page.getByRole('link',{name:`Visit ${site.name}`,exact:true});
+  await expect(liveLink).toHaveAttribute('href',site.url);
+  await expect(liveLink).toHaveAttribute('target','_blank');
+  await expect(liveLink).toHaveAttribute('rel','noopener noreferrer');
+  await expect(page.locator('.placeholder-note')).toHaveCount(0);
+  for(const image of await page.locator(`img[src*="${site.slug}"]`).all()){
+   await image.scrollIntoViewIfNeeded();
+   await expect.poll(()=>image.evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
+  }
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ }
 });

@@ -6,7 +6,7 @@ The site is implemented and locally reviewable. It has not been published.
 
 The studio name TheModuloProject, placeholder portfolio projects and email-draft enquiry flow were confirmed by the user. The Abu Dhabi stamp and geometric mark were supplied by the user. The mark has been reconstructed as scalable SVG geometry for clean rendering in both themes, the hero, favicon and social image.
 
-Invoiceit is presented as a live application using the user-supplied description and URL, with the user-supplied cover image and screenshots of its public sign-in screen. Its project page is indexable. Fieldnotes and Interval remain explicitly labeled studio concepts, with noindex story pages excluded from the sitemap. No invented project results, metrics or testimonials are present.
+Hadaya Al Dar and DataFlow Medical are presented as live websites, with desktop/mobile homepage screenshots and external links. Their project pages are indexable. Invoiceit is presented as a live application using the user-supplied description and URL, with the user-supplied cover image and screenshots of its public sign-in screen. Its project page is indexable. Fieldnotes and Interval remain explicitly labeled studio concepts, with noindex story pages excluded from the sitemap. No invented project results, metrics or testimonials are present.
 
 The canonical and sitemap origin is `https://themoduloproject.com`, retained from the initial implementation. Confirm the production domain and that the existing `hello@themoduloproject.com` mailbox is available when publishing. No messages have been sent.
 

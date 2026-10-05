@@ -9,7 +9,7 @@ try{
   const context=await browser.newContext({viewport:{width,height},colorScheme:'light'});
   const page=await context.newPage();
   await page.addInitScript(()=>{window.__cls=0;new PerformanceObserver(list=>list.getEntries().forEach(entry=>{if(!entry.hadRecentInput)window.__cls+=entry.value;})).observe({type:'layout-shift',buffered:true});});
-  for(const path of ['/','/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/invoiceit/','/work/interval/']){
+  for(const path of ['/','/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/invoiceit/','/work/interval/','/work/hadaya-al-dar/','/work/dataflow-medical/']){
    await page.goto(`http://127.0.0.1:3000${path}`);
    await page.waitForFunction(()=>!document.documentElement.classList.contains('motion-ready'));
    await page.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=innerHeight){scrollTo({top:y,behavior:"instant"});await new Promise(resolve=>setTimeout(resolve,100));}scrollTo({top:0,behavior:"instant"});});

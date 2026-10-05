@@ -33,8 +33,9 @@ export function initScrollReveals() {
 
 export function initHeadingTyping() {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const headings = [...document.querySelectorAll('[data-type-heading]')];
-  if (reduced.matches || !('IntersectionObserver' in window) || !headings.length) return;
+  const headings = [...document.querySelectorAll('[data-type-heading]')]
+    .filter(heading => heading.dataset.typeHeading === 'load' || 'IntersectionObserver' in window);
+  if (reduced.matches || !headings.length) return;
   const timers = new Map();
 
   function finish(heading) {
@@ -79,21 +80,28 @@ export function initHeadingTyping() {
     heading.classList.add('typing-ready');
   }
 
-  const observer = new IntersectionObserver(entries => {
+  function start(heading) {
+    heading.classList.add('is-typing');
+    heading.dataset.typeState = 'typing';
+    const markerDuration = heading.querySelector('.headline-scribble') ? 750 : 0;
+    timers.set(heading, setTimeout(() => finish(heading), Number(heading.dataset.typingDuration) + markerDuration + 50));
+  }
+
+  const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
       const heading = entry.target;
-      heading.classList.add('is-typing');
-      heading.dataset.typeState = 'typing';
-      const markerDuration = heading.querySelector('.headline-scribble') ? 750 : 0;
-      timers.set(heading, setTimeout(() => finish(heading), Number(heading.dataset.typingDuration) + markerDuration + 50));
+      start(heading);
       observer.unobserve(heading);
     }
-  }, { threshold: .25, rootMargin: '0px 0px -8% 0px' });
-  headings.forEach(heading => observer.observe(heading));
+  }, { threshold: .25, rootMargin: '0px 0px -8% 0px' }) : null;
+  headings.forEach(heading => {
+    if (heading.dataset.typeHeading === 'load') start(heading);
+    else observer?.observe(heading);
+  });
   reduced.addEventListener('change', event => {
     if (!event.matches) return;
-    observer.disconnect();
+    observer?.disconnect();
     headings.forEach(finish);
   });
 }

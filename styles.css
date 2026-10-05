@@ -27,6 +27,8 @@
   --headline-marker: #c5f36b;
   --action: #244cff;
   --on-action: #fff;
+  --selection-background: var(--headline-marker);
+  --selection-ink: #151515;
   --chrome: #c9cbd0;
   --material-opacity: 0;
   --disc-rotation: 0deg;
@@ -49,6 +51,8 @@
   --header: #101218;
   --action: #aebeff;
   --on-action: #08090d;
+  --selection-background: var(--action);
+  --selection-ink: var(--on-action);
   --chrome: #b7b8c0;
   --headline-marker: #6550a3;
   --material-opacity: .72;
@@ -64,7 +68,7 @@ button:enabled, a { touch-action: manipulation; }
 button:enabled { cursor: pointer; }
 button:disabled { cursor: default; }
 button { border: 0; padding: 0; background: none; }
-::selection { background: var(--action); color: var(--on-action); }
+::selection { background: var(--selection-background); color: var(--selection-ink); }
 :focus-visible { outline: 2px solid var(--action); outline-offset: 6px; }
 main:focus { outline: none; }
 p, h1, h2 { margin: 0; }
