@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-const routes=['/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/invoiceit/','/work/interval/','/work/hadaya-al-dar/','/work/dataflow-medical/'];
+const routes=['/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/the-layla-studios/','/work/invoiceit/','/work/hadaya-al-dar/','/work/dataflow-medical/'];
 const settle = page => expect(page.locator('html')).not.toHaveClass(/motion-ready|theme-changing/);
 
 test('every page has working assets, a single title and a responsive layout',async({page})=>{
@@ -95,25 +95,14 @@ test('contact validates fields and prepares an encoded, editable-by-email enquir
  expect(await page.evaluate(()=>Object.keys(localStorage))).not.toContain('enquiry');
 });
 
-test('concept previews respond to taps without changing real data',async({page})=>{
- await page.goto('/work/fieldnotes/');
- await page.getByRole('button',{name:'Change perspective'}).click();
- await expect(page.locator('[data-example]')).toHaveClass(/is-alternate/);
- await page.goto('/work/interval/');
- await page.getByRole('button',{name:'Today',exact:true}).click();
- await expect(page.locator('[data-filter-output]')).toHaveText('2 tasks in view');
- await expect(page.locator('[data-example] [data-day="tomorrow"]')).not.toBeVisible();
- await page.getByRole('button',{name:'All work'}).click();
- await expect(page.locator('[data-example] [data-day="tomorrow"]')).toBeVisible();
-});
 
-test('internal links resolve, placeholder stories stay out of search, and legal pages are linked',async({page,request},testInfo)=>{
+test('internal links resolve, live projects are indexed, and legal pages are linked',async({page,request},testInfo)=>{
  test.skip(testInfo.project.name!=='desktop','One route crawl is sufficient.');
  const links=new Set();
  for(const route of ['/',...routes]){
   await page.goto(route);
   for(const href of await page.locator('a[href^="/"]').evaluateAll(items=>items.map(item=>item.getAttribute('href'))))links.add(href.split('#')[0]);
-  if(['/work/fieldnotes/','/work/interval/'].includes(route))await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex, follow');
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','index, follow, max-image-preview:large');
  }
  for(const path of links)expect((await request.get(path)).status(),path).toBe(200);
  const sitemap=await (await request.get('/sitemap.xml')).text();
@@ -121,6 +110,7 @@ test('internal links resolve, placeholder stories stay out of search, and legal 
  expect(sitemap).toContain('https://themoduloproject.com/work/invoiceit/');
  expect(sitemap).toContain('https://themoduloproject.com/work/hadaya-al-dar/');
  expect(sitemap).toContain('https://themoduloproject.com/work/dataflow-medical/');
+ expect(sitemap).toContain('/work/the-layla-studios/');
  expect(sitemap).not.toContain('/work/fieldnotes/');
  expect(sitemap).not.toContain('/work/interval/');
  await page.goto('/');
@@ -128,11 +118,11 @@ test('internal links resolve, placeholder stories stay out of search, and legal 
  await expect(page).toHaveURL(/\/work\/$/);
 });
 
-test('Fieldnotes leads the portfolio and Invoiceit replaces Common Ground with the supplied image',async({page,request})=>{
+test('The Layla Studios leads the portfolio and Invoiceit retains its supplied image',async({page,request})=>{
  for(const route of ['/','/work/']){
   await page.goto(route);
-  await expect(page.locator('.work-item-1').getByRole('heading',{name:'Fieldnotes',exact:true})).toHaveCount(1);
-  await expect(page.locator('.work-item-1 .project-link')).toHaveAttribute('href','/work/fieldnotes/');
+  await expect(page.locator('.work-item-1').getByRole('heading',{name:'The Layla Studios',exact:true})).toHaveCount(1);
+  await expect(page.locator('.work-item-1 .project-link')).toHaveAttribute('href','/work/the-layla-studios/');
   const project=page.locator('.work-item-2');
   await expect(project.getByRole('heading',{name:'Invoiceit',exact:true})).toHaveCount(1);
   await expect(project.locator('.project-link')).toHaveAttribute('href','/work/invoiceit/');
@@ -153,7 +143,7 @@ test('Fieldnotes leads the portfolio and Invoiceit replaces Common Ground with t
   await image.scrollIntoViewIfNeeded();
   await expect.poll(()=>image.evaluate(element=>element.complete&&element.naturalWidth>0)).toBe(true);
  }
- expect((await request.get('/work/fieldnotes/')).status()).toBe(200);
+ expect((await request.get('/work/the-layla-studios/')).status()).toBe(200);
  expect((await request.get('/work/common-ground/')).status()).toBe(404);
 });
 

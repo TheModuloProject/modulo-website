@@ -4,7 +4,7 @@ h3 { margin: 0; }
 .muted { color: var(--muted); }
 .plain-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 6px; font-size: 15px; }
 .plain-link:hover { color: var(--action); }
-.nav-link[aria-current='page']::after { transform: scaleX(1); }
+.nav-link[aria-current='page']::after { clip-path: inset(0); }
 .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 64px; }
 .section-heading h2 { font-size: clamp(42px, 5.9vw, 104px); font-weight: 700; letter-spacing: -.065em; line-height: .98; }
 .section-heading > p, .section-heading > div { max-width: 360px; font-size: 17px; line-height: 1.6; color: var(--muted); }
@@ -32,7 +32,7 @@ h3 { margin: 0; }
 .work-item { grid-column: span 6; min-width: 0; }
 .work-item-1 { grid-column: 1 / 9; }
 .work-item-2 { grid-column: 9 / 13; margin-top: 180px; }
-.work-item-3 { grid-column: 3 / 12; margin-top: -50px; }
+.work-item:has(.interval-art) { grid-column: 3 / 12; margin-top: -50px; }
 .project-link { display: block; }
 .project-art { position: relative; overflow: hidden; container-type: inline-size; isolation: isolate; transition: transform 600ms var(--ease-out); }
 .project-caption { display: flex; justify-content: space-between; gap: 20px; align-items: start; padding-top: 22px; }
@@ -40,6 +40,10 @@ h3 { margin: 0; }
 .project-caption :is(h2,h3) { font-size: clamp(24px,2.5vw,40px); font-weight: 600; letter-spacing: -.05em; }
 .project-caption p { margin-top: 7px; font-size: 14px; line-height: 1.5; color: var(--muted); }
 .project-view { font-size: 14px; line-height: 1.5; padding-block: 6px; text-decoration: underline; text-underline-offset: 5px; flex-shrink: 0; }
+.artwork-credits { margin-top: 16px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.artwork-credits p + p { margin-top: 4px; }
+.artwork-credits a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.artwork-credits cite { font-style: normal; }
 .work-item-2 .project-caption { flex-direction: column; gap: 8px; }
 .work-page { padding-top: 0; }
 .work-disclosure { max-width: 580px; font-size: 16px; line-height: 1.7; color: var(--muted); margin-top: 70px; }
@@ -47,7 +51,7 @@ h3 { margin: 0; }
 .art-top { font-size: 2.1cqw; font-weight: 500; line-height: 1.1; }
 .art-bottom { font-size: 1.7cqw; align-items: center; }
 .invoiceit-art { background: #071126; }
-.invoiceit-image, .website-image { display: block; width: 100%; height: auto; }
+.invoiceit-image, .website-image, .project-cover-image { display: block; width: 100%; height: auto; }
 .invoiceit-screen, .website-screen { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; }
 .invoiceit-screen img, .website-screen img { display: block; width: 100%; height: auto; }
 .invoiceit-phone img, .website-phone img { display: block; width: 100%; height: 100%; object-fit: contain; background: #f8f9fa; }
@@ -176,7 +180,8 @@ h3 { margin: 0; }
 .contact-copy h2 { font-size: clamp(36px,4vw,68px); font-weight: 600; letter-spacing: -.055em; }
 .contact-copy > p { max-width: 310px; font-size: 18px; line-height: 1.65; color: var(--muted); margin-top: 22px; }
 .contact-email { display: inline-flex; align-items: center; min-height: 44px; margin-top: 30px; font-size: 16px; text-decoration: underline; text-underline-offset: 5px; overflow-wrap: anywhere; }
-.contact-copy .contact-location { margin-top: 45px; color: var(--ink); }
+.contact-copy .contact-location { margin-top: 22px; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+.contact-pin { display: block; width: 24px; height: 40px; object-fit: contain; flex-shrink: 0; }
 .project-form { min-width: 0; }
 .form-two { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 .form-field { margin-bottom: 32px; min-width: 0; }
@@ -189,6 +194,10 @@ h3 { margin: 0; }
 .form-field:focus-within label { color: var(--action); }
 .form-field textarea { resize: vertical; line-height: 1.5; min-height: 120px; }
 .form-field textarea::placeholder { color: var(--muted); opacity: 1; }
+.brief-input { position: relative; }
+.brief-input textarea::placeholder { color: transparent; }
+.brief-placeholder { position: absolute; left: 0; right: 18px; bottom: 12px; color: var(--muted); font-size: 17px; line-height: 1.5; pointer-events: none; }
+.brief-input textarea:not(:placeholder-shown) + .brief-placeholder { display: none; }
 .project-types { border: 0; padding: 0; margin: 0 0 36px; }
 .project-types > div { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
 .project-types label { position: relative; cursor: pointer; }
@@ -215,7 +224,8 @@ h3 { margin: 0; }
 .placeholder-note { font-size: 15px; margin-top: 24px; color: var(--muted); }
 .case-preview { padding: 0 var(--gutter); }
 .case-preview > .project-art { max-width: 1440px; margin-inline: auto; }
-.case-preview > .invoiceit-art { max-width: 680px; }
+.case-preview > .invoiceit-art, .case-preview > .project-cover-art { max-width: 680px; }
+.case-preview > .artwork-credits { max-width: 680px; margin-inline: auto; }
 .case-preview .interval-art { aspect-ratio: 1.45; }
 .preview-caption { margin-top: 20px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 .example-button { color: #fff; border: 1px solid #b0c0ff; padding: 8px 16px; min-height: 44px; font-size: clamp(14px,1.7cqw,22px); }
@@ -357,6 +367,7 @@ h3 { margin: 0; }
  .contact-copy > p { max-width: 100%; font-size: 16px; margin-top: 18px; }
  .contact-email { font-size: 15px; margin-top: 20px; }
  .contact-copy .contact-location { margin-top: 12px; font-size: 14px; }
+ .contact-pin { width: 19px; height: 32px; }
  .form-two { grid-template-columns: 1fr; gap: 0; }
  .form-field { margin-bottom: 28px; }
  .project-types label > span { font-size: 14px; padding-inline: 12px; }
@@ -420,7 +431,7 @@ h3 { margin: 0; }
 
 /* A drawn sign-off for Work, Services and About. */
 .invitation-starburst { position: relative; isolation: isolate; overflow: hidden; text-align: center; padding-top: clamp(120px,12vw,190px); padding-bottom: 60px; background: var(--surface); }
-.invitation-starburst::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/assets/invitation-grain.svg'); opacity: .13; pointer-events: none; }
+.invitation-starburst::after { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/assets/invitation-grain.svg'); opacity: .13; pointer-events: none; }
 .invitation-stage { position: relative; width: fit-content; max-width: 100%; margin: 0 auto; }
 .invitation-starburst h2 { position: relative; z-index: 1; font-size: clamp(40px,8.2vw,140px); font-weight: 800; line-height: .98; margin-bottom: 24px; }
 .invitation-orbit { position: absolute; width: 114%; height: 130%; left: -7%; top: -17%; overflow: visible; pointer-events: none; color: var(--ink); opacity: .65; transform: rotate(-3deg); }
@@ -523,4 +534,51 @@ h3 { margin: 0; }
  z-index: -1;
  pointer-events: none;
  background: linear-gradient(to bottom,var(--paper),transparent);
+}
+
+/* The supplied Batman morph, kept on a decorative layer behind the home CTA. */
+.invitation .batman-cta {
+ --batman-rise: clamp(36px,5vw,64px);
+ --batman-drop: clamp(30px,4vw,50px);
+ position: relative;
+ isolation: isolate;
+ background: transparent;
+ margin-top: 24px;
+ transition: color .3s .4s;
+}
+.batman-cta-label { position: relative; z-index: 1; }
+.batman-cta::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ z-index: -1;
+ pointer-events: none;
+ box-shadow: 0 0 0 100px var(--batman-shadow,transparent);
+ background:
+  conic-gradient(from 97deg at top left,#868686 22deg,transparent 0) 20% 86%,
+  conic-gradient(from -120deg at top right,#868686 22deg,transparent 0) 80% 86%,
+  var(--batman-fill,var(--action));
+ background-repeat: no-repeat;
+ background-size: 0 0;
+ clip-path: polygon(0 0,30% 0,45% 0,55% 0,70% 0,100% 0,100% 100%,100% 100%,90% 100%,60% 100%,50% 100%,40% 100%,10% 100%,0 100%,0 100%);
+ transition: box-shadow .3s .4s,background-color .3s .4s,clip-path .4s,inset .4s,background-size .2s;
+}
+.invitation .batman-cta:is(:hover,:focus-visible,:active) {
+ --batman-fill: var(--ink);
+ --batman-shadow: var(--ink);
+ color: var(--paper);
+ opacity: 1;
+ transition: color .3s;
+}
+.batman-cta:is(:hover,:focus-visible,:active)::before {
+ inset: 0 -26px;
+ background-size: 47px 20px;
+ clip-path: polygon(5% calc(0px - var(--batman-rise)),20% 0,45% -14px,55% -14px,80% 0,95% calc(0px - var(--batman-rise)),100% 100%,85% calc(100% + var(--batman-drop)),90% 100%,60% calc(100% + 10px),50% calc(100% + 30px),40% calc(100% + 10px),10% 100%,15% calc(100% + var(--batman-drop)),0 100%);
+ transition: box-shadow .3s,background-color .3s,clip-path .4s .3s,inset .4s .3s,background-size .15s .7s;
+}
+@media (max-width: 767px) {
+ .batman-cta:is(:hover,:focus-visible,:active)::before { inset-inline: -14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .invitation .batman-cta, .batman-cta::before { transition: none; }
 }

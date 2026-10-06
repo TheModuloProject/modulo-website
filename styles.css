@@ -99,8 +99,27 @@ p, h1, h2 { margin: 0; }
 .desktop-nav { display: flex; align-items: center; gap: clamp(18px, 2.3vw, 38px); margin-left: 5vw; }
 .nav-link { min-height: 44px; display: inline-flex; align-items: center; position: relative; font-size: 14px; line-height: 1.4; font-weight: 500; }
 .nav-link:disabled { color: var(--muted); }
-.nav-link::after { content: ''; position: absolute; inset-inline: 0; bottom: 10px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 250ms var(--ease-out); }
-.nav-link:enabled:hover::after, a.nav-link:hover::after { transform: scaleX(1); }
+/* Reveal the supplied repeating wave beneath the label without masking its text. */
+.nav-link::after {
+  content: '';
+  color: var(--headline-marker);
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 12px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle 6px at bottom,currentColor 95%,transparent) bottom 4px left 9px,
+    radial-gradient(circle 6px at top,currentColor 95%,transparent) bottom 0 left 0;
+  background-size: 17px 6px;
+  background-repeat: repeat-x;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path .5s ease;
+}
+.nav-link:is(:hover,:focus-visible)::after { clip-path: inset(0); }
+@media (prefers-reduced-motion: reduce) {
+  .nav-link::after { transition: none; }
+}
 .header-actions { display: flex; align-items: center; gap: 24px; }
 .header-cta { display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 500; }
 .header-cta-label { position: relative; display: inline-block; isolation: isolate; white-space: nowrap; }
@@ -150,6 +169,32 @@ p, h1, h2 { margin: 0; }
 .text-link:hover { opacity: .82; }
 
 .work-link { display: inline-flex; align-items: center; min-height: 48px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: underline; text-underline-offset: 5px; }
+
+/* Sweep a spotlight across the hero labels while retaining the button surfaces. */
+.hero-actions .text-link { --spotlight-ink: var(--on-action); }
+.hero-actions .work-link { --spotlight-ink: var(--ink); }
+.hero-actions .fx-spotlight { display: inline-block; }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .hero-actions .fx-spotlight {
+    background: radial-gradient(3.5ch 100% at 50% 50%,var(--spotlight-ink) 20%,color-mix(in srgb,var(--spotlight-ink) 14%,transparent) 75%) 0 0 / 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fx-spotlight 2.0s ease-in-out infinite alternate;
+  }
+}
+@keyframes fx-spotlight {
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
+}
+.hero-actions a:focus-visible .fx-spotlight {
+  animation: none;
+  background: none;
+  color: var(--spotlight-ink);
+}
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .hero-actions .fx-spotlight { animation: none; background: none; color: inherit; }
+}
 
 /* Bespoke mobile index, with the browser's native focus trap. */
 .mobile-menu { position: fixed; inset: 12px; width: calc(100% - 24px); max-width: none; height: calc(100dvh - 24px); max-height: none; margin: 0; padding: 24px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 3px; overflow-y: auto; }
@@ -207,7 +252,6 @@ html.theme-changing .modulo-object { transform: rotate(0deg); }
   .brand-mark { width: clamp(36px, 1.8vw, 48px); height: clamp(36px, 1.8vw, 48px); }
   .desktop-nav { margin-left: clamp(0px, 2vw, 40px); }
   .nav-link { min-height: 56px; font-size: clamp(24px, 1.8vw, 40px); font-weight: 600; }
-  .nav-link::after { bottom: 6px; }
   .header-cta { min-height: 56px; font-size: clamp(22px, 1.4vw, 30px); font-weight: 600; }
   .theme-toggle { min-height: 56px; gap: 10px; padding-left: 20px; }
   .theme-disc { width: 34px; height: 34px; }

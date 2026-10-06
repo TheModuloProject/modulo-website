@@ -1,5 +1,5 @@
 import {readFile,writeFile} from 'node:fs/promises';
-const paths=['/','/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/fieldnotes/','/work/invoiceit/','/work/interval/','/work/hadaya-al-dar/','/work/dataflow-medical/'];
+const paths=['/','/work/','/services/','/about/','/contact/','/privacy/','/terms/','/work/the-layla-studios/','/work/invoiceit/','/work/hadaya-al-dar/','/work/dataflow-medical/'];
 const records=[];
 for(const path of paths){const slug=path==='/'?'home':path.split('/').filter(Boolean).join('-');const report=JSON.parse(await readFile(`docs/audits/${slug}-mobile.json`,'utf8'));records.push({path,slug,categories:Object.fromEntries(Object.entries(report.categories).map(([id,item])=>[id,Math.round(item.score*100)])),metrics:Object.fromEntries(['largest-contentful-paint','cumulative-layout-shift','total-blocking-time'].map(id=>[id,report.audits[id].displayValue])),failedAudits:Object.values(report.audits).filter(a=>a.score!==null&&a.score<1&&!['manual','informative','notApplicable'].includes(a.scoreDisplayMode)).map(a=>({id:a.id,title:a.title,value:a.displayValue}))});}
 await writeFile('docs/audits/summary.json',JSON.stringify(records,null,2)+'\n');

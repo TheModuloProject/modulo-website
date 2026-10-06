@@ -65,10 +65,10 @@ test('draw-in runs once and reduced motion cancels star and stroke animations',a
  await expect(section).toHaveClass(/invitation-draw-ready/);
  await section.scrollIntoViewIfNeeded();
  await expect(section).toHaveClass(/invitation-drawn/);
- await expect.poll(()=>section.evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.playState==='running').length)).toBe(0);
+ await expect.poll(()=>section.evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.animationName!=='invitation-pattern-drift'&&a.playState==='running').length)).toBe(0);
  await page.evaluate(()=>scrollTo(0,0));
  await section.scrollIntoViewIfNeeded();
- expect(await section.evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.playState==='running').length)).toBe(0);
+ expect(await section.evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.animationName!=='invitation-pattern-drift'&&a.playState==='running').length)).toBe(0);
  await section.getByRole('button',{name:'Change the handwritten message'}).click();
  await page.emulateMedia({reducedMotion:'reduce'});
  await expect.poll(()=>section.evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0);
