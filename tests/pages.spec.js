@@ -14,9 +14,11 @@ test('every page has working assets, a single title and a responsive layout',asy
   expect(await page.locator('h1').count()).toBe(1);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href',`https://themoduloproject.com${route}`);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  const stamp=page.getByRole('img',{name:'Vintage Abu Dhabi postage stamp with crossed flags'});
-  await stamp.scrollIntoViewIfNeeded();
-  await expect.poll(()=>stamp.evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
+  const footer=page.locator('.site-footer');
+  await footer.scrollIntoViewIfNeeded();
+  await expect(footer.locator('.footer-location')).toContainText('Abu Dhabi, UAE');
+  await expect(footer.locator('.footer-location')).toContainText('Building across the globe.');
+  await expect(footer.locator('img')).toHaveCount(0);
   expect(await page.evaluate(()=>document.querySelectorAll('a[href*="undefined"]').length)).toBe(0);
  }
  expect(errors).toEqual([]);
