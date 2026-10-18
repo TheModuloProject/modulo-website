@@ -436,7 +436,7 @@ h3 { margin: 0; }
 .invitation-lettering { position: relative; z-index: 1; width: clamp(235px,33vw,490px); max-width: 100%; height: clamp(44px,5.2vw,72px); margin: 0 auto; color: var(--ink); }
 .invitation-script { display: block; width: 100%; height: 100%; overflow: visible; }
 .invitation-message:not([hidden]) { display: block; height: 100%; }
-.invitation-script path { fill: none; stroke: currentColor; stroke-width: .8; stroke-linecap: round; stroke-linejoin: round; }
+.invitation-script path { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .invitation-star { position: absolute; z-index: 2; width: clamp(70px,9vw,140px); aspect-ratio: 1; right: -3%; top: clamp(-108px,-7.5vw,-66px); color: var(--headline-marker); border-radius: 50%; transform: translate(var(--invitation-x,0px),var(--invitation-y,0px)) rotate(12deg); transition: transform 500ms var(--ease-out); }
 .invitation-star:disabled { cursor: default; }
 .invitation-star-pop, .invitation-star svg { display: block; width: 100%; height: 100%; }
