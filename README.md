@@ -37,7 +37,32 @@ npm run build
 
 Run these with the local server active. `npm run verify` runs these checks in sequence and refreshes the QA report. New page screenshots live in `docs/previews/pages/`.
 
-Deploy `dist/` as a static site. The build outputs all 13 pages, self-hosted fonts, the supplied Abu Dhabi stamp (responsive AVIF/WebP), supplied logo geometry (SVG), and a social preview. It generates CSP script hashes and Netlify/Cloudflare-style `_headers`, plus a root Vercel configuration. Configure equivalent headers on other hosts. Source files, tests and development tooling are excluded from `dist/`.
+Deploy `dist/` as a static site. The build outputs the public pages, project images, self-hosted fonts, logo geometry (SVG), and a social preview. It generates CSP script hashes and Cloudflare-compatible `_headers`, plus a root Vercel configuration. Configure equivalent headers on other hosts. Source files, tests and development tooling are excluded from `dist/`.
+
+### Cloudflare Workers with GitHub
+
+The repository's `wrangler.jsonc` deploys static assets from `./dist` to the Worker named `modulo-website`, using the site's custom 404 page for missing URLs.
+
+Wrangler is pinned for reproducible builds. Its local Miniflare dependency uses a scoped override to the patched Sharp 0.35.5 release.
+
+In that Worker's **Settings → Build**, use:
+
+| Setting | Value |
+| --- | --- |
+| Build command | `npm run build` |
+| Deploy command | `npm run deploy` |
+| Root directory | Repository root |
+
+Commit and push the configuration, package files and source changes, then retry the build. Remove any `--assets .` or other repository-root assets argument from the dashboard deploy command; it would upload development dependencies instead of the finished site. Environment variables are not required for this build.
+
+To validate a deployment locally without publishing:
+
+```sh
+npm run build
+npm run deploy -- --dry-run
+```
+
+If deploying through **Pages** instead, use framework preset **None**, build command `npm run build`, and build output directory `dist`. Pages does not use the Workers deploy command.
 
 ## Site behavior
 

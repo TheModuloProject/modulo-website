@@ -10,6 +10,7 @@
     "test": "playwright test",
     "test:ui": "playwright test --headed",
     "build": "node scripts/build.mjs",
+    "deploy": "wrangler deploy",
     "render:social": "node scripts/render-social.mjs",
     "audit": "node scripts/audit-pages.mjs",
     "capture": "node scripts/capture-pages.mjs",
@@ -18,11 +19,17 @@
     "capture:hero": "node scripts/capture.mjs",
     "report": "node scripts/report-qa.mjs"
   },
+  "overrides": {
+    "miniflare": {
+      "sharp": "0.35.5"
+    }
+  },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
     "chrome-launcher": "^1.2.2",
     "lighthouse": "^13.5.0",
-    "sharp": "^0.35.5"
+    "sharp": "^0.35.5",
+    "wrangler": "4.148.0"
   }
 }
